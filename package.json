@@ -1,0 +1,18 @@
+{
+  "name": "mean-stack",
+  "version": "1.0.0",
+  "description": "employee app with angular, express, and node-js",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "edureka",
+  "license": "ISC",
+  "dependencies": {
+    "@types/angularjs": "^1.5.14-alpha",
+    "angular": "^1.7.9",
+    "angularjs": "0.0.1",
+    "express": "^4.17.1",
+    "mongodb": "^3.5.4"
+  }
+}
