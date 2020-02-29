@@ -14,5 +14,14 @@
     "angularjs": "0.0.1",
     "express": "^4.17.1",
     "mongodb": "^3.5.4"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manallion/mean-stack-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/manallion/mean-stack-app/issues"
+  },
+  "homepage": "https://github.com/manallion/mean-stack-app#readme"
 }

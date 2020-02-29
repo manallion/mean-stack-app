@@ -1,90 +1,85 @@
-<!DOCTYPE html>
-<html ng-app="myApp">
+
+<!DOCTYPE>
+<html ng-app="myApp"> <!-- adding ng-app to open html tag test if angularjs is working-->
 <head>
-     <title>edureka! MEAN Application</title>     
-     <link href="./libs/css/bootstrap.min.css" rel="stylesheet"> 
-     <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <link rel="shortcut icon" href="http://d30aa6afk7qd1v.cloudfront.net/imgver.5694333/img/favicon.ico" type="image/x-icon">
-     <script>
-  $(function() {
-    var datepicker=$("#datepicker").datepicker(
-                    {changeMonth:true,changeYear:true,maxDate:"-1M -1D -1Y",dateFormat:"yy-mm-dd"}
-                                              );
-    $("#datepicker").bind("keydown", function (event) {
-       event.preventDefault();
-     });
-  });
-  </script>
-    
+	
+<!-- added bootstrap to make responsive and give styled look refresh to see templating-->
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+<title>Contact List App</title>
+
 </head>
-
 <body>
-    <div class="container" ng-controller="AppCtrl">
-      <br/>
-      <h1 align="center">edureka! MEAN Application - Employee Directory App</h1><br/><br/>
-      <table class="table">          
-        <thead>
-          <tr>
-            <td>Name</td>
-            <td>Email</td>
-            <td>Date of Birth</td>
-            <td>Department</td>
-            <td>Gender</td>
-            <td>Age</td>
-          </tr>
-        </thead>
-          
-        <tbody>
-            <tr>
-                
-              <form>
-                  <td>
-                    <input class="form-control" ng-model="employee.name" required  placeholder="Name"/>
-                  </td>
-                  <td>
-                    <input type="email" ng-model="employee.email" required class="form-control"            placeholder="abc@xyz.com"/>
-                  </td>
-                  <td>
-                    <input type="text" ng-model="employee.dob" id="datepicker" class="form-control" required    placeholder="YYYY-MM-DD"/>
-                  </td>
-                  <td>
-                    <input  ng-model="employee.department" required class="form-control"                      placeholder="Department"/>
-                  </td>
-                  <td>
-                    <input  ng-model="employee.gender" required class="form-control"                     placeholder="Gender"/>
-                  </td>
-                  <td>
-                    <input type="number" ng-model="employee.age" disabled class="form-control"               placeholder="Age"/>
-                  </td>
-                  <td>
-                      <button class="btn btn-success btn-md" ng-click="addEmployee()">Add Employee</button>
-                      <td><button class="btn btn-success btn-md" ng-click="updateEmployee()">Update Employee</button></td>
-                  </td>
-            
-              </form>
-            </tr> 
-            
-            <tr ng-repeat="employee in employees" >
-                
-                <td>
-                  <button class="btn btn-danger btn-sm" ng-click="removeEmployee(employee._id)" >Delete</button>&nbsp;&nbsp;
-                  <button class="btn btn-primary btn-sm" ng-click="editEmployee(employee._id)">Edit</button>
-                </td>
-             
-            </tr> 
-        </div>  
-            
-          </tbody>
-          
-        </table>  
-    </div>
+<div class = "container" ng-controller="AppCtrl" ><!-- added controller here-->
+	<h1>Contact List App</h1>
 
-     <script src="./libs/js/angular.min.js"></script>  
-     <script src="./controllers/controller.js"></script>
+	<!-- <input ng-model= "test">  	//used with ng-app to test angularjs is working
+	{{test}} 	 					//angular's way of doing two way binding (refresh brower not server to see content changes ) -->
+
+	<!-- general lay out of app below-->
+	<table class="table">
+		<thead> <!-- table head-->
+			<tr> <!-- table row-->
+				<th>Name</th> <!-- table headers-->
+				<th>E-mail</th>
+                <th>Date of Birth</th>
+                <th>Department</th>
+                <th>Gender</th>
+				<th>Action</th><!-- flag - 30 - new colum add button to received data and PUT into app--> 
+				<th>&nbsp;</th><!-- flag - 39 - create black space "&nbsp;" add for edit buttons . to keep formatting balanced-->
+			</tr>
+		</thead>
+		<tbody>
+			<tr><!-- flag - 30 - add input for new data-->
+				
+				<td><input class= "form-control" ng-model="contact.name"></td> <!-- flag 30 bootstraped and ng model for connection to controller (model view controller)-->
+
+				<td><input class= "form-control" ng-model="contact.email"></td>
+
+                <td> <input type="text" ng-model="employee.dob" id="datepicker" class="form-control" required    placeholder="YYYY-MM-DD"/></td>
+                
+                <td><input class= "form-control" ng-model="department.name"></td>
+
+                <td><input class= "form-control" ng-model="gender.name"></td>
+
+                <td><input class= "form-control" ng-model="action.name"></td>
+
+				<!-- flag - 30 - add button for above data to PUT input for new data-->
+
+				<td><button class="btn btn-primary" ng-disabled="contact._id" ng-click="addContact()">Add Contact</button></td>
+				<!-- flag - 39 - edit buttons-->
+				<td><button class="btn btn-info" ng-disabled="!contact._id" ng-click="update(contact._id)">Update</button>&nbsp;&nbsp;<button class="btn btn-info" ng-click="deselect()">Clear</button></td><!-- flag - 43 fix bug - edit buttons-->
+
+			</tr><!-- flag - 30 - add input for new data-->
+			<tr ng-repeat="contact in contactlist">
+				<td>{{contact.name}}</td>
+				<td>{{contact.email}}</td>
+                <td>{{employee.dob}}</td>
+                <td>{{department.name}}</td>
+                <td>{{gender.name}}</td>
+                <td>{{action.name}}</td>
+               
+				<td><button class="btn btn-danger" ng-click="remove (contact._id)">Remove</button></td>
+				<!-- flag - 39 - edit buttons-->
+				<td><button class="btn btn-warning" ng-click="edit (contact._id)">Edit</button></td>
+			</tr>
+
+		</tbody>
+
+	</table>
+
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+<!-- 
+add angular.js before end of body so app loads faster, ang.js libs now avaliable
+-->
+<script src="controllers/controller.js"></script> <!-- add controller to index.html file -->
+
 </body>
-    
 </html>
-
-
