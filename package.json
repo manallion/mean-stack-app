@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/angularjs": "^1.5.14-alpha",
-    "angular": "^1.7.9",
+    "angular": "^1.8.3",
     "angularjs": "0.0.1",
     "express": "^4.17.1",
     "mongodb": "^3.5.4"
